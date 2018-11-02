@@ -3,7 +3,7 @@ var list = [
     {"desc":"beer","amount":"12","value":"1.99"},
     {"desc":"steak","amount":"1","value":"15.10"}
 ];
-
+//retorna a SOMA do parâmetro 'value' do Array list
 function getTotal(list) {
     var  total = 0;
     for (var key in list){
@@ -11,7 +11,7 @@ function getTotal(list) {
     }
     return total;
 }
-
+//Seta na descrição, quantidade, e valor, dos parâmetros do Array  list
 function setList(list){
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr></thead><tbody>';
     for(var key in list){
@@ -20,13 +20,13 @@ function setList(list){
     table += '</tbody>';
     document.getElementById("listTable").innerHTML = table;
 }
-
+//trata o parâmetro descrição do array list
 function formatDesc(desc){
     var str = desc.toLowerCase();
     str = str.charAt(0).toUpperCase() + str.slice(1); 
     return str;
 }
-
+//trata o parâmetro valor do array list
 function formatValue(value){
     var str = parseFloat(value).toFixed(2) + "";
     str = str.replace(".",",");
@@ -34,6 +34,15 @@ function formatValue(value){
     return str;
 }
 
+function addData(){
+var desc =  document.getElementById("desc").value;
+var amount =  document.getElementById("amount").value;
+var value =  document.getElementById("value").value;
+
+list.unshift ({"desc":desc, "amount":amount, "value":value});
+setList(list);
+
+}
 
 
 setList(list);
