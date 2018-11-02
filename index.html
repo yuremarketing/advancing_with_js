@@ -13,7 +13,7 @@
           <div class="navbar-header">
             <a id="navTitle" class="navbar-brand" href="index.html"></a>
           </div>        
-        </div>
+        </div>  
       </nav>
       <div class="container-fluid">
         <div class="form-inline">
@@ -26,11 +26,13 @@
           <div class="form-group">
               <input type="text" class="form-control" id="value" placeholder="Value">
           </div>
-          <button onclick="addData();" class="btn btn-default">Add</button>
+          <span id="btnUpdate" style="display: none;">
+            <button onclick="updateData();" class="btn btn-default">Save</button>
+            <button onclick="resetForm();" class="btn btn-default">Cancel</button>
+          </span>
+          <button id="btnAdd" onclick="addData();" class="btn btn-default">Add</button>
         </div>
-        <table id="listTable" class="table">
-          <tbody> </tbody>
-        </table>
+        <table id="listTable" class="table"></table>
       </div>
 
       <script src="course/js/config.js"></script>
