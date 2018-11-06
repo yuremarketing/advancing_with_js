@@ -15,7 +15,7 @@ function getTotal(list) {
 function setList(list){ 
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr></thead><tbody>';
     for(var key in list){
-        table += '<tr><td>'+ formatDesc(list[key].desc) +'</td><td>'+ list[key].amount+'</td><td>'+ formatValue(list[key].value)+'</td><td> <buton class="btn btn-default" onclick="setUpdate('+key+');">Edit</buton>Delete</td></tr>'
+        table += '<tr><td>'+ formatDesc(list[key].desc) +'</td><td>'+ list[key].amount+'</td><td>'+ formatValue(list[key].value)+'</td><td> <buton class="btn btn-default" onclick="setUpdate('+key+');">Edit</buton> <buton class="btn btn-default" onclick="deleteData('+key+');"> Delete</buton> </td></tr>'
             //console.log(key)
     }
     table += '</tbody>';
@@ -75,6 +75,24 @@ function upDateData(){
     resetForm();
     setList(list);
 }
+//deleta um item da listagem
+function deleteData(id){
+    if(confirm("Delete this item?")){
+        if(id === list.length - 1){
+            list.pop();// esta função apaga o último da lista
+        }else if(id === 0){
+            list.shift();// esta função apaga o primeiro da lista
+        }else{
+            //esta lógica consiste em usar a função slice para "guardar" a lista em 2 parte e depois concatena-las 
+            //assim podemos excluir o ID do "meio"
+            var arrAuxIni = list.slice(0,id);
+            var arrAuxEnd = list.slice(id + 1);
+            list = arrAuxIni.concat(arrAuxEnd);
+        }
+        setList(list);
+    }
+}
+
 
 
 
