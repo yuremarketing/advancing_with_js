@@ -18,16 +18,17 @@
       <div class="container-fluid">
         <div class="form-inline">
           <div class="form-group">
-            <input type="text" class="form-control" id="desc" placeholder="Description">
+            <input id="desc" type="text" class="form-control" placeholder="Description">
           </div>
           <div class="form-group">
-              <input type="text" class="form-control" id="amount" placeholder="Amount">
+              <input id="amount" type="text" class="form-control"  placeholder="Amount">
           </div>
           <div class="form-group">
-              <input type="text" class="form-control" id="value" placeholder="Value">
+              <input  id="value" type="text" class="form-control" placeholder="Value">
           </div>
           <span id="btnUpdate" style="display: none;">
-            <button onclick="updateData();" class="btn btn-default">Save</button>
+            <span id="inputIDUpdate"></span>
+            <button onclick="upDateData();" class="btn btn-default">Save</button>
             <button onclick="resetForm();" class="btn btn-default">Cancel</button>
           </span>
           <button id="btnAdd" onclick="addData();" class="btn btn-default">Add</button>
