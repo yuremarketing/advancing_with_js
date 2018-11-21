@@ -8,8 +8,11 @@ function getTotal(list) {
     var  total = 0;
     for (var key in list){
         total += list[key].value * list[key].amount;
-    }
-    return total;
+    } 
+    document.getElementById("totalValue").innerHTML = formatValue(total);
+    getTotal(list);
+     
+    
 }
 //alimenta a LISTAGEM NA TELA
 function setList(list){ 
@@ -20,6 +23,8 @@ function setList(list){
     }
     table += '</tbody>';
     document.getElementById("listTable").innerHTML = table;
+   //adendo 
+    getTotal(list);
 }
 //trata FORMATA a lista de produtos
 function formatDesc(desc){
@@ -144,8 +149,13 @@ function validation(){
 
 }
 
+function deleteList(){
+    if(confirm("Delete This List?")){
+        list= [];
+        setList(list);
+    }
+}
 
-
-
-setList(list);
+//getTotal(list)
+setList(list)
 //console.log()
