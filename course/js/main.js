@@ -27,6 +27,7 @@ function formatDesc(desc){
     str = str.charAt(0).toUpperCase() + str.slice(1); 
     return str;
 }
+
 //trata FORMATA a istagem dos valores dos produtos
 function formatValue(value){
     var str = parseFloat(value).toFixed(2) + "";
@@ -36,6 +37,9 @@ function formatValue(value){
 }
 //Adiciona UM NOVO Dado na lista de produtos
 function addData(){
+    if(!validation()){
+        return;
+    }
 var desc =  document.getElementById("desc").value;
 var amount =  document.getElementById("amount").value;
 var value =  document.getElementById("value").value;
@@ -43,7 +47,7 @@ var value =  document.getElementById("value").value;
 list.unshift ({"desc":desc, "amount":amount, "value":value});
 setList(list);
 }
-//ATUALIZA UM PRODUTO pelo ID
+//ATUALIZA UM campo PRODUTO pelo ID
 function setUpdate(id){
     var obj = list[id];
     document.getElementById("desc").value = obj.desc;
@@ -66,6 +70,9 @@ function resetForm(){
 }
 //Pega os Dados informados no imput, e seta-os no Array list(banco)
 function upDateData(){ 
+    if(!validation()){alert("ENTROU!")
+        return;
+    }
     var id = document.getElementById("idUpdate").value;
     var desc = document.getElementById("desc").value;
     var amount = document.getElementById("amount").value;
@@ -95,7 +102,46 @@ function deleteData(id){ console.log(id)
 
 function formatAmount(amount){
     
-    return amount
+    return parseInt(amount);
+}
+
+
+//valida os formulários
+function validation(){
+    var desc = document.getElementById("desc").value;
+    var amount = document.getElementById("amount").value;
+    var value = document.getElementById("value").value;
+    var errors = "";
+    document.getElementById("errors").style.display = "none";
+    if(desc === ""){
+        errors += '<p>Fill out description</p>';
+    }
+    if(amount === ""){
+        errors += '<p>Fill out a quantity</p>';
+    }else if(amount != parseInt(amount)){
+        errors += '<p>Fill out a valid amount</p>';
+    }
+    if(value === ""){
+        errors += '<p>Fill out a value</p>';
+    }else if(value != parseFloat(value)){
+        errors += '<p>Fill out a valid value</p>';
+    }
+
+    if(errors != ""){
+        document.getElementById("errors").style.display = "block";
+        document.getElementById("errors").style.backgroundColor = "rgba(85, 85, 85, 0.3)";
+        document.getElementById("errors").style.color = "white";
+        document.getElementById("errors").style.padding = "10px";
+        document.getElementById("errors").style.margin = "10px";
+        document.getElementById("errors").style.borderRadius = "13px";
+
+        document.getElementById("errors").innerHTML = "<h3>Error:</h3>" + errors;
+        return 0;
+    }else{
+        return 1;
+    }
+
+
 }
 
 
